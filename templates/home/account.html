@@ -1,7 +1,7 @@
 {% extends 'base-home.html' %}
 
 {% block content %}
-<h1>Account: {{account['display_name']}}</h1>
+<h3>Account: {{account['display_name']}}</h3>
 <table class="table table-bordered table-hover table-striped">
     <tr>
         <td><strong>Account ID:</strong></td>
@@ -34,13 +34,13 @@
     <tr>
         <td><strong>Provider:</strong></td>
         <td>
-            <img src="{{account['provider']['logo_uri']}}">
+            <img height="100" width="100" src="{{account['provider']['logo_uri']}}">
             {{account['provider']['display_name']}}
         </td>
     </tr>
 </table>
 
-<h3>Account Balance</h3>
+<h4>Account Balance</h4>
 
 <table class="table table-bordered table-hover table-striped">
     <thead>
@@ -61,7 +61,7 @@
     {% endfor %}
 </table>
 
-<h3>Account Transactions</h3>
+<h4>Account Transactions</h4>
 <table class="table table-bordered table-hover table-striped">
     <thead>
         <th><strong>Timestamp</strong></th>

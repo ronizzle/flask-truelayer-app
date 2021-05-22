@@ -1,18 +1,48 @@
 {% extends 'base-home.html' %}
 
 {% block content %}
-<h1>Card: {{card['display_name']}}</h1>
+<h3>Card: {{card['display_name']}}</h3>
 <table class="table table-bordered table-hover table-striped">
 
     <tr>
+        <td><strong>Card Type:</strong></td>
+        <td>
+            {{card['card_type']}}
+        </td>
+    </tr>
+    <tr>
+        <td><strong>Name on Card:</strong></td>
+        <td>
+            {{card['name_on_card']}}
+        </td>
+    </tr>
+    <tr>
+        <td><strong>Card Network:</strong></td>
+        <td>
+            {{card['card_network']}}
+        </td>
+    </tr>
+    <tr>
+        <td><strong>Partial Card Number:</strong></td>
+        <td>
+            {{card['partial_card_number']}}
+        </td>
+    </tr>
+    <tr>
+        <td><strong>Currency:</strong></td>
+        <td>
+            {{card['currency']}}
+        </td>
+    </tr>
+    <tr>
         <td><strong>Provider:</strong></td>
         <td>
-            <img src="{{card['provider']['logo_uri']}}">
+            <img height="100" width="100" src="{{card['provider']['logo_uri']}}">
             {{card['provider']['display_name']}}
         </td>
     </tr>
 </table>
-<h3>Card Balance</h3>
+<h4>Card Balance</h4>
 
 <table class="table table-bordered table-hover table-striped">
     <thead>
@@ -42,7 +72,7 @@
 </table>
 
 
-<h3>Card Transactions</h3>
+<h4>Card Transactions</h4>
 <table class="table table-bordered table-hover table-striped">
     <thead>
         <th><strong>Amount</strong></th>
