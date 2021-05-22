@@ -111,8 +111,8 @@ def cards():
 def card(id):
     card = get_card_all_details(id)
     #return session['access_token']
-    return card
-    #return render_template('home/card.html', card=card)
+    #return card
+    return render_template('home/card.html', card=card)
 
 
 def get_card_all_details(card_id):

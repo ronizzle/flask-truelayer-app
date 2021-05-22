@@ -1,44 +1,73 @@
 {% extends 'base-home.html' %}
 
 {% block content %}
-<h1>Account: {{account['display_name']}}</h1>
+<p><a href="/home/cards">Back to cards.</a></p>
+<h1>Card: {{card['display_name']}}</h1>
 <table>
-    <tr>
-        <td><strong>Account ID:</strong></td>
-        <td>{{account['account_id']}}</td>
-    </tr>
-    <tr>
-        <td><strong>Number:</strong></td>
-        <td>{{account['account_number']['number']}}</td>
-    </tr>
-    <tr>
-        <td><strong>Sort Code:</strong></td>
-        <td>{{account['account_number']['sort_code']}}</td>
-    </tr>
-    <tr>
-        <td><strong>Swift BIC:</strong></td>
-        <td>{{account['account_number']['swift_bic']}}</td>
-    </tr>
-    <tr>
-        <td><strong>Account Type:</strong></td>
-        <td>{{account['account_type']}}</td>
-    </tr>
-    <tr>
-        <td><strong>Display Name:</strong></td>
-        <td>{{account['display_name']}}</td>
-    </tr>
-    <tr>
-        <td><strong>Last Updated:</strong></td>
-        <td>{{account['update_timestamp']}}</td>
-    </tr>
+
     <tr>
         <td><strong>Provider:</strong></td>
         <td>
-            <img src="https://truelayer-client-logos.s3-eu-west-1.amazonaws.com/banks/banks-icons/mock-icon.svg">
-            {{account['provider']['display_name']}}
+            <img src="{{card['provider']['logo_uri']}}">
+            {{card['provider']['display_name']}}
         </td>
     </tr>
 </table>
+<h3>Card Balance</h3>
 
-<p><a href="/home/dashboard">Back to home page.</a></p>
+<table>
+    <thead>
+        <th><strong>Available</strong></th>
+        <th><strong>Credit Limit</strong></th>
+        <th><strong>Currency</strong></th>
+        <th><strong>Current</strong></th>
+        <th><strong>Last Statement Balance</strong></th>
+        <th><strong>Last Statement Date</strong></th>
+        <th><strong>Payment Due</strong></th>
+        <th><strong>Payment Due Date</strong></th>
+        <th><strong>Last Updated</strong></th>
+    </thead>
+    {% for balance in card['balance']['results'] %}
+        <tr>
+            <td>{{balance['available']}}</td>
+            <td>{{balance['credit_limit']}}</td>
+            <td>{{balance['currency']}}</td>
+            <td>{{balance['current']}}</td>
+            <td>{{balance['last_statement_balance']}}</td>
+            <td>{{balance['last_statement_date']}}</td>
+            <td>{{balance['payment_due']}}</td>
+            <td>{{balance['payment_due_date']}}</td>
+            <td>{{balance['update_timestamp']}}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+
+<h3>Card Transactions</h3>
+<table>
+    <thead>
+        <th><strong>Amount</strong></th>
+        <th><strong>Currency</strong></th>
+        <th><strong>Description</strong></th>
+        <th><strong>Merchant</strong></th>
+        <th><strong>Timestamp</strong></th>
+        <th><strong>Running Balance</strong></th>
+        <th><strong>Transaction Category</strong></th>
+        <th><strong>Transaction Type</strong></th>
+    </thead>
+    {% for balance in card['transactions']['results'] %}
+        <tr>
+            <td>{{balance['amount']}}</td>
+            <td>{{balance['currency']}}</td>
+            <td>{{balance['description']}}</td>
+            <td>{{balance['merchant_name']}}</td>
+            <td>{{balance['timestamp']}}</td>
+            <td>{{balance['running_balance']['amount']}}</td>
+            <td>{{balance['transaction_category']}}</td>
+            <td>{{balance['transaction_type']}}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+<p><a href="/home/cards">Back to cards.</a></p>
 {% endblock %}

@@ -17,7 +17,7 @@ def login():
 def logout():
     session.pop('refresh_token', None)
     session.pop('access_token', None)
-    return redirect('auth/login')
+    return redirect('/auth/login')
 
 
 @bp.route('/callback', methods=('GET', 'POST'))
