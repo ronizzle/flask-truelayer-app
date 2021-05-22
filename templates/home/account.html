@@ -1,6 +1,7 @@
-{% extends 'base.html' %}
+{% extends 'base-home.html' %}
 
 {% block content %}
+<p><a href="/home/dashboard">Back to home page.</a></p>
 <h1>Account: {{account['display_name']}}</h1>
 <table>
     <tr>
@@ -72,16 +73,12 @@
     </thead>
     {% for balance in account['transactions']['results'] %}
         <tr>
-            <td>
-                <a href="{{balance['transaction_id']}}">
-                    {{balance['timestamp']}}
-                </a>
-            </td>
+            <td>{{balance['timestamp']}}</td>
             <td>{{balance['description']}}</td>
             <td>{{balance['transaction_type']}}</td>
             <td>{{balance['amount']}}</td>
             <td>{{balance['currency']}}</td>
-            <td>{{balance['running_balance']}}</td>
+            <td>{{balance['running_balance']['amount']}}</td>
         </tr>
     {% endfor %}
 </table>

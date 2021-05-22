@@ -1,0 +1,21 @@
+<!doctype html>
+<title>{% block title %}{% endblock %} - Truelayer x Flask Integration</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <h1>TrueLayer</h1>
+<nav>
+  <ul>
+    <li>
+      <a href="/home/dashboard">Accounts</a>
+      <a href="/home/cards">Cards</a>
+    </li>
+  </ul>
+</nav>
+<section class="content">
+  <header>
+    {% block header %}{% endblock %}
+  </header>
+  {% for message in get_flashed_messages() %}
+    <div class="flash">{{ message }}</div>
+  {% endfor %}
+  {% block content %}{% endblock %}
+</section>

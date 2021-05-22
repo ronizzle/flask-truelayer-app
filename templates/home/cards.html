@@ -1,0 +1,35 @@
+{% extends 'base-home.html' %}
+
+{% block content %}
+<h2>Cards</h2>
+<table>
+    <thead>
+        <th>Display Name</th>
+        <th>Card Network</th>
+        <th>Partial Card Number</th>
+        <th>Name on Card</th>
+        <th>Card Type</th>
+        <th>Currency</th>
+        <th>Date Modified</th>
+    </thead>
+    <tbody>
+        {% for card in cards['results'] %}
+        <tr>
+            <td>
+                <a href="/home/cards/{{card['account_id']}}">
+                    {{card['display_name']}}
+                </a>
+            </td>
+            <td>{{card['card_network']}}</td>
+            <td>{{card['partial_card_number']}}</td>
+            <td>{{card['name_on_card']}}</td>
+            <td>{{card['card_type']}}</td>
+            <td>{{card['currency']}}</td>
+            <td>{{card['update_timestamp']}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock %}

@@ -11,7 +11,6 @@ bp = Blueprint('home', __name__, url_prefix='/home')
 @bp.route('/dashboard')
 def dashboard():
     accounts = get_accounts()
-    #return accounts
     return render_template('home/dashboard.html', accounts=accounts)
 
 
@@ -85,3 +84,81 @@ def get_account_transactions(account_id):
 
     return body
 
+
+def get_cards():
+
+    base_url = 'https://api.truelayer-sandbox.com/'
+    url = base_url + 'data/v1/cards'
+
+    headers = {"Authorization": f"Bearer {session['access_token']}"}
+    r = requests.get(url, headers=headers)
+
+    r.raise_for_status()
+    body = r.json()
+
+    return body
+
+
+
+@bp.route('/cards')
+def cards():
+    cards = get_cards()
+    #return cards
+    return render_template('home/cards.html', cards=cards)
+
+
+@bp.route('/cards/<string:id>')
+def card(id):
+    card = get_card_all_details(id)
+    #return session['access_token']
+    return card
+    #return render_template('home/card.html', card=card)
+
+
+def get_card_all_details(card_id):
+    card = get_card(card_id)
+    card['balance'] = get_card_balance(card_id)
+    card['transactions'] = get_card_transactions(card_id)
+    return card
+
+
+def get_card(card_id):
+
+    base_url = 'https://api.truelayer-sandbox.com/'
+    url = base_url + 'data/v1/cards/' + card_id
+
+    headers = {"Authorization": f"Bearer {session['access_token']}"}
+    r = requests.get(url, headers=headers)
+
+    r.raise_for_status()
+    body = r.json()
+
+    return body['results'][0]
+
+
+def get_card_balance(card_id):
+
+    base_url = 'https://api.truelayer-sandbox.com/'
+    url = base_url + 'data/v1/cards/' + card_id + '/balance'
+
+    headers = {"Authorization": f"Bearer {session['access_token']}"}
+    r = requests.get(url, headers=headers)
+
+    r.raise_for_status()
+    body = r.json()
+
+    return body
+
+
+def get_card_transactions(card_id):
+
+    base_url = 'https://api.truelayer-sandbox.com/'
+    url = base_url + 'data/v1/cards/' + card_id + '/transactions'
+
+    headers = {"Authorization": f"Bearer {session['access_token']}"}
+    r = requests.get(url, headers=headers)
+
+    r.raise_for_status()
+    body = r.json()
+
+    return body
