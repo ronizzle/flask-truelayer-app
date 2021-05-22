@@ -24,7 +24,7 @@ def account(id):
 
 def get_accounts():
 
-    base_url = 'https://api.truelayer-sandbox.com/'
+    base_url = 'https://api.truelayer.com/'
     url = base_url + 'data/v1/accounts'
 
     headers = {"Authorization": f"Bearer {session['access_token']}"}
@@ -45,7 +45,7 @@ def get_account_all_details(account_id):
 
 def get_account(account_id):
 
-    base_url = 'https://api.truelayer-sandbox.com/'
+    base_url = 'https://api.truelayer.com/'
     url = base_url + 'data/v1/accounts/' + account_id
 
     headers = {"Authorization": f"Bearer {session['access_token']}"}
@@ -59,7 +59,7 @@ def get_account(account_id):
 
 def get_account_balance(account_id):
 
-    base_url = 'https://api.truelayer-sandbox.com/'
+    base_url = 'https://api.truelayer.com/'
     url = base_url + 'data/v1/accounts/' + account_id + '/balance'
 
     headers = {"Authorization": f"Bearer {session['access_token']}"}
@@ -73,7 +73,7 @@ def get_account_balance(account_id):
 
 def get_account_transactions(account_id):
 
-    base_url = 'https://api.truelayer-sandbox.com/'
+    base_url = 'https://api.truelayer.com/'
     url = base_url + 'data/v1/accounts/' + account_id + '/transactions'
 
     headers = {"Authorization": f"Bearer {session['access_token']}"}
@@ -87,7 +87,7 @@ def get_account_transactions(account_id):
 
 def get_cards():
 
-    base_url = 'https://api.truelayer-sandbox.com/'
+    base_url = 'https://api.truelayer.com/'
     url = base_url + 'data/v1/cards'
 
     headers = {"Authorization": f"Bearer {session['access_token']}"}
@@ -124,7 +124,7 @@ def get_card_all_details(card_id):
 
 def get_card(card_id):
 
-    base_url = 'https://api.truelayer-sandbox.com/'
+    base_url = 'https://api.truelayer.com/'
     url = base_url + 'data/v1/cards/' + card_id
 
     headers = {"Authorization": f"Bearer {session['access_token']}"}
@@ -138,7 +138,7 @@ def get_card(card_id):
 
 def get_card_balance(card_id):
 
-    base_url = 'https://api.truelayer-sandbox.com/'
+    base_url = 'https://api.truelayer.com/'
     url = base_url + 'data/v1/cards/' + card_id + '/balance'
 
     headers = {"Authorization": f"Bearer {session['access_token']}"}
@@ -152,7 +152,7 @@ def get_card_balance(card_id):
 
 def get_card_transactions(card_id):
 
-    base_url = 'https://api.truelayer-sandbox.com/'
+    base_url = 'https://api.truelayer.com/'
     url = base_url + 'data/v1/cards/' + card_id + '/transactions'
 
     headers = {"Authorization": f"Bearer {session['access_token']}"}
