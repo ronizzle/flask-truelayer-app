@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Account: {{account['display_name']}}</h1>
+<table>
+    <tr>
+        <td><strong>Account ID:</strong></td>
+        <td>{{account['account_id']}}</td>
+    </tr>
+    <tr>
+        <td><strong>Number:</strong></td>
+        <td>{{account['account_number']['number']}}</td>
+    </tr>
+    <tr>
+        <td><strong>Sort Code:</strong></td>
+        <td>{{account['account_number']['sort_code']}}</td>
+    </tr>
+    <tr>
+        <td><strong>Swift BIC:</strong></td>
+        <td>{{account['account_number']['swift_bic']}}</td>
+    </tr>
+    <tr>
+        <td><strong>Account Type:</strong></td>
+        <td>{{account['account_type']}}</td>
+    </tr>
+    <tr>
+        <td><strong>Display Name:</strong></td>
+        <td>{{account['display_name']}}</td>
+    </tr>
+    <tr>
+        <td><strong>Last Updated:</strong></td>
+        <td>{{account['update_timestamp']}}</td>
+    </tr>
+    <tr>
+        <td><strong>Provider:</strong></td>
+        <td>
+            <img src="https://truelayer-client-logos.s3-eu-west-1.amazonaws.com/banks/banks-icons/mock-icon.svg">
+            {{account['provider']['display_name']}}
+        </td>
+    </tr>
+</table>
+<p><a href="/home/dashboard">Back to home page.</a></p>
+{% endblock %}

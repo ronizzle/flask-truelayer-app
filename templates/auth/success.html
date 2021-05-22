@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<p>You have successfully logged-in!</p>
+<p>Redirecting you to your Account!</p>
+    <script>
+
+    setTimeout(function(){
+        window.location.replace("/home/dashboard");
+    }, 5000);
+    </script>
+{% endblock %}
