@@ -2,7 +2,6 @@ from flask import (
     Blueprint, redirect, render_template, url_for, request, session
 )
 
-
 import requests
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
@@ -16,8 +15,9 @@ def login():
 
 @bp.route('/logout')
 def logout():
-    # destroy truelayer session here
-    return redirect(url_for('index'))
+    session.pop('refresh_token', None)
+    session.pop('access_token', None)
+    return redirect('auth/login')
 
 
 @bp.route('/callback', methods=('GET', 'POST'))

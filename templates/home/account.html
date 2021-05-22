@@ -39,5 +39,51 @@
         </td>
     </tr>
 </table>
+
+<h3>Account Balance</h3>
+
+<table>
+    <thead>
+        <th><strong>Available</strong></th>
+        <th><strong>Currency</strong></th>
+        <th><strong>Current</strong></th>
+        <th><strong>Overdraft</strong></th>
+        <th><strong>Last Updated</strong></th>
+    </thead>
+    {% for balance in account['balance']['results'] %}
+        <tr>
+            <td>{{balance['available']}}</td>
+            <td>{{balance['currency']}}</td>
+            <td>{{balance['current']}}</td>
+            <td>{{balance['overdraft']}}</td>
+            <td>{{balance['update_timestamp']}}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+<h3>Account Transactions</h3>
+<table>
+    <thead>
+        <th><strong>Timestamp</strong></th>
+        <th><strong>Description</strong></th>
+        <th><strong>Amount</strong></th>
+        <th><strong>Currency</strong></th>
+        <th><strong>Running Balance</strong></th>
+    </thead>
+    {% for balance in account['transactions']['results'] %}
+        <tr>
+            <td>
+                <a href="{{balance['transaction_id']}}">
+                    {{balance['timestamp']}}
+                </a>
+            </td>
+            <td>{{balance['description']}}</td>
+            <td>{{balance['transaction_type']}}</td>
+            <td>{{balance['amount']}}</td>
+            <td>{{balance['currency']}}</td>
+            <td>{{balance['running_balance']}}</td>
+        </tr>
+    {% endfor %}
+</table>
 <p><a href="/home/dashboard">Back to home page.</a></p>
 {% endblock %}
