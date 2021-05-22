@@ -9,6 +9,9 @@ bp = Blueprint('auth', __name__, url_prefix='/auth')
 
 @bp.route('/login', methods=('GET', 'POST'))
 def login():
+    if 'access_token' in session:
+        return redirect('/home/dashboard')
+
     login_url = link_builder()
     return render_template('auth/login.html', login_url=login_url)
 
