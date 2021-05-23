@@ -3,6 +3,9 @@ from flask import (
 )
 
 import requests
+from dotenv import dotenv_values
+
+config = dotenv_values()
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
@@ -31,23 +34,23 @@ def callback():
 
 
 def link_builder():
-    base_url = 'https://auth.truelayer.com/'
-    code = 'code'
-    scope = 'info accounts balance cards transactions direct_debits standing_orders offline_access'
-    redirect_uri = 'http://54.251.179.183/auth/callback'
-    providers = 'uk-ob-all uk-oauth-all uk-cs-mock'
-    client_id = 'rbernascodetest01-a16f09'
+    base_url = config['TRUELAYER_AUTH_URL']
+    code = config['TRUELAYER_CODE']
+    scope = config['TRUELAYER_SCOPE']
+    redirect_uri = config['TRUELAYER_REDIRECT_URI']
+    providers = config['TRUELAYER_PROVIDERS']
+    client_id = config['TRUELAYER_CLIENT_ID']
 
     url = base_url + '?response_type=' + code + '&client_id=' + client_id + '&scope=' + scope + '&redirect_uri=' + redirect_uri + '&providers=' + providers
     return url
 
 
 def connect_token(code):
-    base_url = 'https://auth.truelayer.com/'
+    base_url = config['TRUELAYER_AUTH_URL']
     url = base_url + 'connect/token'
-    client_id = 'rbernascodetest01-a16f09'
-    client_secret = '6a79e37e-c7bf-4642-96dd-49c789e7f012'
-    redirect_uri = 'http://54.251.179.183/auth/callback'
+    client_id = config['TRUELAYER_CLIENT_ID']
+    client_secret = config['TRUELAYER_CLIENT_SECRET']
+    redirect_uri = config['TRUELAYER_REDIRECT_URI']
     post_data = {
         'grant_type': 'authorization_code',
         'client_id': client_id,
